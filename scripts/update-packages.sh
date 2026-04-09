@@ -52,7 +52,6 @@ UPDATE_PACKAGE() {
 }
 
 UPDATE_PACKAGE "airoha-npu" "rchen14b/luci-app-airoha-npu" "main"
-UPDATE_PACKAGE "ttyd" "tsl0922/ttyd" "main"
 UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "dev" "pkg"
 UPDATE_PACKAGE "aurora" "eamonxg/luci-theme-aurora" "master"
 UPDATE_PACKAGE "aurora-config" "eamonxg/luci-app-aurora-config" "master"

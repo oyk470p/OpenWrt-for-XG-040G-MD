@@ -51,7 +51,6 @@ UPDATE_PACKAGE() {
 	echo "Done: $PKG_NAME"
 }
 
-UPDATE_PACKAGE "airoha_npu" "rchen14b/luci-app-airoha-npu" "main"
 UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "dev" "pkg"
 UPDATE_PACKAGE "aurora" "eamonxg/luci-theme-aurora" "master"
 UPDATE_PACKAGE "aurora-config" "eamonxg/luci-app-aurora-config" "master"

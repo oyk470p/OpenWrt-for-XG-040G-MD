@@ -125,13 +125,6 @@ jobs:
           ./scripts/feeds update -a
           ./scripts/feeds install -a -f
 
-      - name: Add luci-app-airoha-npu
-        run: |
-          cd openwrt
-          git clone https://github.com/rchen14b/luci-app-airoha-npu.git package/luci-app-airoha-npu
-          make defconfig
-          make package/luci-app-airoha-npu/compile V=s
-          
       - name: Install third-party packages
         working-directory: ./openwrt/package
         run: |
@@ -160,6 +153,11 @@ jobs:
           # Remove small incomplete files <1KB
           find dl -size -1024c -delete
 
+      - name: Add luci-app-airoha-npu
+        run: |
+          cd openwrt
+          git clone https://github.com/rchen14b/luci-app-airoha-npu.git package/luci-app-airoha-npu
+          
       - name: Compile OpenWrt firmware
         id: compile
         run: |

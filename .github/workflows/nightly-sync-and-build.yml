@@ -29,7 +29,7 @@ jobs:
             --method POST \
             -H "Accept: application/vnd.github+json" \
             /repos/xiangtailiang/openwrt/merge-upstream \
-            -f branch='openwrt-25.12' || true # Prevent failure if no updates or conflicts
+            -f branch='openwrt-25.12'
 
       - name: Trigger firmware build workflow (openwrt-25.12)
         env:
@@ -49,7 +49,7 @@ jobs:
             --method POST \
             -H "Accept: application/vnd.github+json" \
             /repos/xiangtailiang/openwrt/merge-upstream \
-            -f branch='main' || true # Prevent failure if no updates or conflicts
+            -f branch='main'
 
       - name: Trigger firmware build workflow (main)
         env:
@@ -63,5 +63,5 @@ jobs:
 
       - name: Summary
         run: |
-          echo "✅ Synced xiangtailiang/openwrt:openwrt-25.12 with upstream and triggered xg-040g-md-openwrt-25.12.yml"
-          echo "✅ Synced xiangtailiang/openwrt:main with upstream and triggered xg-040g-md-openwrt-main.yml"
+          echo "✅ Synced xiangtailiang/openwrt:openwrt-25.12 and triggered xg-040g-md-openwrt-25.12.yml"
+          echo "✅ Synced xiangtailiang/openwrt:main and triggered xg-040g-md-openwrt-main.yml"

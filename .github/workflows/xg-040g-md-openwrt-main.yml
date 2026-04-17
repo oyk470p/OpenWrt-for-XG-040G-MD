@@ -149,20 +149,10 @@ jobs:
       - name: Download packages
         working-directory: ./openwrt
         run: |
+          git clone https://github.com/rchen14b/luci-app-airoha-npu.git package/luci-app-airoha-npu
           make download -j4 V=s
           # Remove small incomplete files <1KB
           find dl -size -1024c -delete
-
-      - name: Add luci-app-airoha-npu
-        working-directory: ./openwrt
-        run: |
-          # Add to your build tree
-          git clone https://github.com/rchen14b/luci-app-airoha-npu.git package/luci-app-airoha-npu
-          # Enable in menuconfig
-          make menuconfig
-          Navigate to: LuCI -> Applications -> luci-app-airoha-npu
-          # Build
-          make package/luci-app-airoha-npu/compile V=s
           
       - name: Compile OpenWrt firmware
         id: compile

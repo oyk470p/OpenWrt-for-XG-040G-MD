@@ -149,7 +149,6 @@ jobs:
       - name: Download packages
         working-directory: ./openwrt
         run: |
-          git clone https://github.com/rchen14b/luci-app-airoha-npu.git package/luci-app-airoha-npu
           make download -j4 V=s
           # Remove small incomplete files <1KB
           find dl -size -1024c -delete

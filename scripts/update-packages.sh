@@ -31,7 +31,6 @@ UPDATE_PACKAGE() {
 	done
 
 	# 克隆 GitHub 仓库
-	git clone https://github.com/rchen14b/luci-app-airoha-npu.git package/luci-app-airoha-npu
 	git clone --depth=1 --single-branch --branch "$PKG_BRANCH" "https://github.com/$PKG_REPO.git"	
 
 	if [ ! -d "$REPO_NAME" ]; then

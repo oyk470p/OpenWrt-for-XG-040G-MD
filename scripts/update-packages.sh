@@ -31,7 +31,8 @@ UPDATE_PACKAGE() {
 	done
 
 	# 克隆 GitHub 仓库
-	git clone --depth=1 --single-branch --branch "$PKG_BRANCH" "https://github.com/$PKG_REPO.git"
+	git clone https://github.com/rchen14b/luci-app-airoha-npu.git package/luci-app-airoha-npu
+	git clone --depth=1 --single-branch --branch "$PKG_BRANCH" "https://github.com/$PKG_REPO.git"	
 
 	if [ ! -d "$REPO_NAME" ]; then
 		echo "ERROR: Failed to clone $PKG_REPO"
@@ -52,18 +53,18 @@ UPDATE_PACKAGE() {
 }
 
 UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "dev" "pkg"
-UPDATE_PACKAGE "aurora" "eamonxg/luci-theme-aurora" "master"
-UPDATE_PACKAGE "aurora-config" "eamonxg/luci-app-aurora-config" "master"
+UPDATE_PACKAGE "glass" "rchen14b/luci-theme-glass" "main"
+UPDATE_PACKAGE "airoha_npu" "rchen14b/luci-app-airoha-npu" "main"
 
-# 修改 LuCI 默认主题为 Aurora（保留 bootstrap 包可共存）
+# 修改 LuCI 默认主题为 glass（保留 bootstrap 包可共存）
 echo " "
 echo "=========================================="
-echo "Setting default LuCI theme to aurora..."
+echo "Setting default LuCI theme to glass..."
 echo "=========================================="
 COLLECTION_MAKEFILES=$(find ../feeds/luci/collections/ -type f -name "Makefile" 2>/dev/null)
 if [ -n "$COLLECTION_MAKEFILES" ]; then
-	sed -i "s/luci-theme-bootstrap/luci-theme-aurora/g" $COLLECTION_MAKEFILES
-	echo "Done setting default LuCI theme to aurora"
+	sed -i "s/luci-theme-bootstrap/luci-theme-glass/g" $COLLECTION_MAKEFILES
+	echo "Done setting default LuCI theme to glass"
 else
 	echo "WARNING: No LuCI collection Makefile found, skip theme default patch"
 fi

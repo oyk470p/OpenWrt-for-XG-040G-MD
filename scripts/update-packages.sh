@@ -53,7 +53,6 @@ UPDATE_PACKAGE() {
 
 UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "dev" "pkg"
 UPDATE_PACKAGE "glass" "rchen14b/luci-theme-glass" "main"
-UPDATE_PACKAGE "airoha_npu" "rchen14b/luci-app-airoha-npu" "main"
 
 # 修改 LuCI 默认主题为 glass（保留 bootstrap 包可共存）
 echo " "

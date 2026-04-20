@@ -52,17 +52,18 @@ UPDATE_PACKAGE() {
 }
 
 UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "dev" "pkg"
-UPDATE_PACKAGE "glass" "rchen14b/luci-theme-glass" "main"
+UPDATE_PACKAGE "aurora" "eamonxg/luci-theme-aurora" "master"
+UPDATE_PACKAGE "aurora-config" "eamonxg/luci-app-aurora-config" "master"
 
-# 修改 LuCI 默认主题为 glass（保留 bootstrap 包可共存）
+# 修改 LuCI 默认主题为 aurora（保留 bootstrap 包可共存）
 echo " "
 echo "=========================================="
-echo "Setting default LuCI theme to glass..."
+echo "Setting default LuCI theme to aurora..."
 echo "=========================================="
 COLLECTION_MAKEFILES=$(find ../feeds/luci/collections/ -type f -name "Makefile" 2>/dev/null)
 if [ -n "$COLLECTION_MAKEFILES" ]; then
-	sed -i "s/luci-theme-bootstrap/luci-theme-glass/g" $COLLECTION_MAKEFILES
-	echo "Done setting default LuCI theme to glass"
+	sed -i "s/luci-theme-bootstrap/luci-theme-aurora/g" $COLLECTION_MAKEFILES
+	echo "Done setting default LuCI theme to aurora"
 else
 	echo "WARNING: No LuCI collection Makefile found, skip theme default patch"
 fi

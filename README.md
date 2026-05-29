@@ -14,7 +14,7 @@ OpenWrt firmware for NOKIA BELL XG-040G-MD
 - **基础界面**: LuCI (支持 HTTPS), 中文语言包
 - **默认主题**: Aurora 主题 (含设置页), 保留原生 Bootstrap
 - **网络与安全**: 防火墙 (基于 nftables), dnsmasq (DHCP/DNS/IPv6)
-- **科学上网**: Openclash
+- **科学上网**: OpenClash
 - **AI Agnet**: PicoClaw
 
 ## 刷机教程

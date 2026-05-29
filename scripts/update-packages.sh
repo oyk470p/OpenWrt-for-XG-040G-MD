@@ -61,15 +61,15 @@ UPDATE_PACKAGE "luci-app-airoha-npu" "ericyin/luci-app-airoha-npu" "main"
 # vi luci-app-airoha-npu/Makefile
 # include $(TOPDIR)/feeds/luci/luci.mk
 
-# 修改 LuCI 默认主题为 Argon（保留 bootstrap 包可共存）
+# 修改 LuCI 默认主题为 Aurora（保留 bootstrap 包可共存）
 echo " "
 echo "=========================================="
-echo "Setting default LuCI theme to argon..."
+echo "Setting default LuCI theme to Aurora..."
 echo "=========================================="
 COLLECTION_MAKEFILES=$(find ../feeds/luci/collections/ -type f -name "Makefile" 2>/dev/null)
 if [ -n "$COLLECTION_MAKEFILES" ]; then
-	sed -i "s/luci-theme-bootstrap/luci-theme-argon/g" $COLLECTION_MAKEFILES
-	echo "Done setting default LuCI theme to argon"
+	sed -i "s/luci-theme-bootstrap/luci-theme-aurora/g" $COLLECTION_MAKEFILES
+	echo "Done setting default LuCI theme to aurora"
 else
 	echo "WARNING: No LuCI collection Makefile found, skip theme default patch"
 fi

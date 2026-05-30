@@ -2,6 +2,39 @@
 # 安装和更新第三方软件包
 # 此脚本在 openwrt/package/ 目录下运行，在 feeds install 之后执行
 
+UPDATE_FEED_PACKAGE() {  
+    local PKG_NAME=$1
+	local PKG_REPO=$2
+	local PKG_BRANCH=$3
+	local GIT_URL="https://github.com/$PKG_REPO.git" 
+	local FEED_DIR="../myluci"
+    echo "Installing $PKG_NAME from $GIT_URL ..."
+    if [ ! -d "$FEED_DIR" ]; then
+        echo "create feed app dir: $FEED_DIR..."
+	    mkdir -vp $FEED_DIR
+    fi
+	
+    git clone --depth=1 --single-branch --branch "$PKG_BRANCH" "$GIT_URL" "$FEED_DIR/$PKG_NAME"
+    ls $FEED_DIR/$PKG_NAME
+	if [ ! -d "$FEED_DIR/$PKG_NAME" ]; then
+		echo "ERROR: Failed to clone $PKG_REPO"
+		return 1
+	fi
+
+	local OLD=$PWD
+	cd $FEED_DIR/$PKG_NAME
+    local REAL_PATH=$PWD
+	echo $REAL_PATH
+	cd $OLD
+	local SRC_LINK="src-link $PKG_NAME $REAL_PATH"
+	echo $SRC_LINK
+	echo "$SRC_LINK" >> ../feeds.conf.default
+	cat ../feeds.conf.default
+	../scripts/feeds update $PKG_NAME
+    ../scripts/feeds install -a -p $PKG_NAME
+	return 0
+}
+
 UPDATE_PACKAGE() {
 	local PKG_NAME=$1
 	local PKG_REPO=$2
@@ -60,6 +93,11 @@ UPDATE_PACKAGE "aurora-config" "eamonxg/luci-app-aurora-config" "master"
 UPDATE_PACKAGE "luci-app-airoha-npu" "ericyin/luci-app-airoha-npu" "main"
 sed -i 's|include ../../luci.mk|include $(TOPDIR)/feeds/luci/luci.mk|' ./luci-app-airoha-npu/Makefile
 # cat ./luci-app-airoha-npu/Makefile
+
+# vsftpd ui
+UPDATE_PACKAGE "luci-app-vsftpd" "ericyin/luci" "openwrt-25.12" "pkg" "" "luci"
+sed -i 's|include ../../luci.mk|include $(TOPDIR)/feeds/luci/luci.mk|' ./luci-app-vsftpd/Makefile
+# cat ./luci-app-vsftpd/Makefile
 
 # 修改 LuCI 默认主题为 Aurora（保留 bootstrap 包可共存）
 echo " "

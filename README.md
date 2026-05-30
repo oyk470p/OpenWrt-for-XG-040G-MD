@@ -32,8 +32,11 @@ OpenWrt firmware for NOKIA BELL XG-040G-MD
 ### 系统概览
 ![System Overview](shot/shot1.png)
 
-### 接口与网络
-![Interfaces](shot/shot2.png)
+### NPU状态
+![npu](shot/shot2.png)
+
+### PicoClaw
+![picoclaw](shot/shot3.png)
 
 ## Docs
 

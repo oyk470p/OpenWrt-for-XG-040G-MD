@@ -55,7 +55,7 @@ UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "dev" "pkg"
 UPDATE_PACKAGE "picoclaw" "GennKann/luci-app-picoclaw" "master"
 UPDATE_PACKAGE "aurora" "eamonxg/luci-theme-aurora" "master"
 UPDATE_PACKAGE "aurora-config" "eamonxg/luci-app-aurora-config" "master"
-UPDATE_PACKAGE "luci-app-airoha-npu" "ericyin/luci-app-airoha-npu" "main"
+UPDATE_FEED_PACKAGE "luci-app-airoha-npu" "ericyin/luci-app-airoha-npu" "main"
 
 # 修改 LuCI 默认主题为 Aurora（保留 bootstrap 包可共存）
 echo " "
@@ -70,17 +70,6 @@ else
 	echo "WARNING: No LuCI collection Makefile found, skip theme default patch"
 fi
 
-echo "Installing luci-app-airoha-npu..."
-if [ ! -d "../feeds/luci/applications" ]; then
-    echo "create ../feeds/luci/applications..."
-	mkdir -vp ../feeds/luci/applications
-fi
-git clone --depth=1 --single-branch --branch "main" "https://github.com/ericyin/luci-app-airoha-npu.git"
-
-if [ ! -d "../feeds/luci/applications/luci-app-airoha-npu" ]; then
-	echo "ERROR: Failed to clone luci-app-airoha-npu"
-	return 1
-fi
 
 echo " "
 echo "=========================================="

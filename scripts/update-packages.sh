@@ -55,7 +55,11 @@ UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "dev" "pkg"
 UPDATE_PACKAGE "picoclaw" "GennKann/luci-app-picoclaw" "master"
 UPDATE_PACKAGE "aurora" "eamonxg/luci-theme-aurora" "master"
 UPDATE_PACKAGE "aurora-config" "eamonxg/luci-app-aurora-config" "master"
-UPDATE_FEED_PACKAGE "luci-app-airoha-npu" "ericyin/luci-app-airoha-npu" "main"
+
+# soc status app
+UPDATE_PACKAGE "luci-app-airoha-npu" "ericyin/luci-app-airoha-npu" "main"
+sed -i 's|include ../../luci.mk|include $(TOPDIR)/feeds/luci/luci.mk|' ./luci-app-airoha-npu/Makefile
+# cat ./luci-app-airoha-npu/Makefile
 
 # 修改 LuCI 默认主题为 Aurora（保留 bootstrap 包可共存）
 echo " "
@@ -69,7 +73,6 @@ if [ -n "$COLLECTION_MAKEFILES" ]; then
 else
 	echo "WARNING: No LuCI collection Makefile found, skip theme default patch"
 fi
-
 
 echo " "
 echo "=========================================="

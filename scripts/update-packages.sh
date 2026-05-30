@@ -57,10 +57,6 @@ UPDATE_PACKAGE "aurora" "eamonxg/luci-theme-aurora" "master"
 UPDATE_PACKAGE "aurora-config" "eamonxg/luci-app-aurora-config" "master"
 UPDATE_PACKAGE "luci-app-airoha-npu" "ericyin/luci-app-airoha-npu" "main"
 
-# 修改luci-app-airoha-npu插件的Makefile（不修改编译的时候会找不到路径报错）
-# vi luci-app-airoha-npu/Makefile
-# include $(TOPDIR)/feeds/luci/luci.mk
-
 # 修改 LuCI 默认主题为 Aurora（保留 bootstrap 包可共存）
 echo " "
 echo "=========================================="
@@ -74,11 +70,17 @@ else
 	echo "WARNING: No LuCI collection Makefile found, skip theme default patch"
 fi
 
-# echo "Installing emortal packages..."
-# echo "=========================================="
-# unzip emortal.zip -d ./emortal
-# rm emortal.zip
-# ls emortal
+echo "Installing luci-app-airoha-npu..."
+if [ ! -d "../feeds/luci/applications" ]; then
+    echo "create ../feeds/luci/applications..."
+	mkdir -vp ../feeds/luci/applications
+fi
+git clone --depth=1 --single-branch --branch "main" "https://github.com/ericyin/luci-app-airoha-npu.git"
+
+if [ ! -d "../feeds/luci/applications/luci-app-airoha-npu" ]; then
+	echo "ERROR: Failed to clone luci-app-airoha-npu"
+	return 1
+fi
 
 echo " "
 echo "=========================================="

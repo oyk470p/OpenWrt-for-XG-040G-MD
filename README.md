@@ -2,7 +2,7 @@
 
 OpenWrt firmware for NOKIA BELL XG-040G-MD
 
-源仓库采用：[https://github.com/ericyin/openwrt](https://github.com/ericyin/openwrt)
+源仓库采用：[https://github.com/ericyin/openwrt.git](https://github.com/ericyin/openwrt.git)
 
 - 已完美适配 SkyHigh 闪存，运行稳定（采用官方 Robust Read Workaround 补丁）
 - Image 基于 OpenWrt 25.12 稳定版或 main (snapshot) 分支构建

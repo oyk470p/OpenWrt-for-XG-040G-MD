@@ -84,10 +84,11 @@ UPDATE_PACKAGE() {
 	echo "Done: $PKG_NAME"
 }
 
-UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "dev" "pkg"
-UPDATE_PACKAGE "picoclaw" "GennKann/luci-app-picoclaw" "master"
+UPDATE_PACKAGE "adguardhome" "kenzok78/luci-app-adguardhome" "main"
 UPDATE_PACKAGE "aurora" "eamonxg/luci-theme-aurora" "master"
 UPDATE_PACKAGE "aurora-config" "eamonxg/luci-app-aurora-config" "master"
+UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "dev" "pkg"
+UPDATE_PACKAGE "picoclaw" "GennKann/luci-app-picoclaw" "master"
 
 # soc status app
 UPDATE_PACKAGE "luci-app-airoha-npu" "oyk470p/luci-app-airoha-npu" "main"

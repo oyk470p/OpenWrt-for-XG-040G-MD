@@ -85,6 +85,7 @@ UPDATE_PACKAGE() {
 }
 
 UPDATE_PACKAGE "adguardhome" "kenzok78/luci-app-adguardhome" "main"
+UPDATE_PACKAGE "advanced" "kenzok78/luci-app-advanced" "main"
 UPDATE_PACKAGE "aurora" "eamonxg/luci-theme-aurora" "master"
 UPDATE_PACKAGE "aurora-config" "eamonxg/luci-app-aurora-config" "master"
 UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "dev" "pkg"

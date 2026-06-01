@@ -239,6 +239,26 @@
 			opp-hz = /bits/ 64 <1200000000>;
 			required-opps = <&smcc_opp14>;
 		};
+
+        opp-12500000000 {
+            opp-hz = /bits/ 64 <1250000000>;
+            required-opps = <&smcc_opp14>;
+        };
+
+        opp-13000000000 {
+            opp-hz = /bits/ 64 <1300000000>;
+            required-opps = <&smcc_opp14>;
+        };
+
+        opp-13500000000 {
+            opp-hz = /bits/ 64 <1350000000>;
+            required-opps = <&smcc_opp14>;
+        };
+
+        opp-14000000000 {
+            opp-hz = /bits/ 64 <1400000000>;
+            required-opps = <&smcc_opp14>;
+        };
 	};
 
 	cpu_smcc_opp_table: opp-table-cpu-smcc {

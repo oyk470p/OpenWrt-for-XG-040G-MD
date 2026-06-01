@@ -409,7 +409,6 @@
 			      <0x0 0x09400000 0x0 0x2000>,
 			      <0x0 0x09500000 0x0 0x2000>,
 			      <0x0 0x09600000 0x0 0x20000>;
-			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
 		};
 
 		uart1: serial@1fbf0000 {
@@ -591,7 +590,7 @@
 			#phy-cells = <1>;
 		};
 
-		crypto@1e004000 {
+		crypto: crypto@1e004000 {
 			compatible = "inside-secure,safexcel-eip93ies";
 			reg = <0x0 0x1fb70000 0x0 0x1000>;
 
@@ -868,9 +867,11 @@
 				     <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>,
 				     <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
 			memory-region = <&npu_binary>, <&npu_pkt>, <&npu_txpkt>,
-					<&npu_txbufid>;
+					<&npu_txbufid>, <&npu_ba>;
 			memory-region-names = "binary", "pkt", "tx-pkt",
-					      "tx-bufid";
+					      "tx-bufid", "ba";
+			status = "okay";
+
 		};
 
 		eth: ethernet@1fb50000 {

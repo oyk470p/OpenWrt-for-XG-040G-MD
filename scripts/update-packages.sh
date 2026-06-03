@@ -1,7 +1,6 @@
 #!/bin/bash
 # 安装和更新第三方软件包
 # 此脚本在 openwrt/package/ 目录下运行，在 feeds install 之后执行
-
 UPDATE_FEED_PACKAGE() {  
     local PKG_NAME=$1
 	local PKG_REPO=$2
@@ -91,14 +90,17 @@ UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "dev" "pkg"
 UPDATE_PACKAGE "picoclaw" "GennKann/luci-app-picoclaw" "master"
 
 # soc status app
-UPDATE_PACKAGE "luci-app-airoha-npu" "oyk470p/luci-app-airoha-npu" "main"
+pkgs=("luci-app-airoha-npu"); UPDATE_PACKAGE pkgs "ericyin/luci-app-airoha-npu" "main"; unset pkgs
 sed -i 's|include ../../luci.mk|include $(TOPDIR)/feeds/luci/luci.mk|' ./luci-app-airoha-npu/Makefile
-# cat ./luci-app-airoha-npu/Makefile
 
 # vsftpd ui
-UPDATE_PACKAGE "luci-app-vsftpd" "ericyin/luci" "openwrt-25.12" "pkg" "" "luci"
-sed -i 's|include ../../luci.mk|include $(TOPDIR)/feeds/luci/luci.mk|' ./luci-app-vsftpd/Makefile
-# cat ./luci-app-vsftpd/Makefile
+# pkgs=("luci-app-vsftpd"); UPDATE_PACKAGE pkgs "ericyin/luci" "openwrt-25.12" "pkg"; unset pkgs
+# sed -i 's|include ../../luci.mk|include $(TOPDIR)/feeds/luci/luci.mk|' ./luci-app-vsftpd/Makefile
+
+# windows/office tool
+pkgs=("vlmcsd"); UPDATE_PACKAGE pkgs "immortalwrt/packages" "openwrt-25.12" "pkg"; unset pkgs
+pkgs=("luci-app-vlmcsd"); UPDATE_PACKAGE pkgs "immortalwrt/luci" "openwrt-25.12" "pkg"; unset pkgs
+sed -i 's|include ../../luci.mk|include $(TOPDIR)/feeds/luci/luci.mk|' ./luci-app-vlmcsd/Makefile
 
 # 修改 LuCI 默认主题为 Aurora（保留 bootstrap 包可共存）
 echo " "

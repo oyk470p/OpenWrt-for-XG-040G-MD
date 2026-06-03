@@ -1,4 +1,4 @@
-nname: Build_XG_040G_MD_OpenWrt_25_12
+name: Build_XG_040G_MD_OpenWrt_25_12
 
 permissions:
   contents: write

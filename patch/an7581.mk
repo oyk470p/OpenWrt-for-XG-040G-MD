@@ -12,33 +12,6 @@ define Build/an7581-bl31-uboot
   cat $(STAGING_DIR_IMAGE)/an7581_$1-bl31-u-boot.fip >> $@
 endef
 
-define Build/an7581-chainloader
-  $(INSTALL_DIR) $(KDIR)/chainload-fit-$(notdir $@)
-  @if [ -f "$(STAGING_DIR_IMAGE)/an7581_$1-u-boot.bin.lzma" ]; then \
-    KERNEL="$(STAGING_DIR_IMAGE)/an7581_$1-u-boot.bin.lzma"; \
-    COMP="lzma"; \
-  else \
-    KERNEL="$(STAGING_DIR_IMAGE)/an7581_$1-u-boot.bin"; \
-    COMP="none"; \
-  fi; \
-  $(TOPDIR)/scripts/mkits.sh \
-    -D $(DEVICE_NAME) \
-    -o $(KDIR)/chainload-fit-$(notdir $@)/u-boot.its \
-    -k $$KERNEL \
-    -C $$COMP \
-    -a 0x80200000 -e 0x80200000 \
-    -c conf-uboot \
-    -A arm64 -v u-boot \
-    -d $(STAGING_DIR_IMAGE)/an7581_$1-u-boot.dtb \
-    -s 0x82000000
-  PATH=$(LINUX_DIR)/scripts/dtc:$(PATH) \
-    $(STAGING_DIR_HOST)/bin/mkimage \
-    -D "-i $(KDIR)/chainload-fit-$(notdir $@)" \
-    -f $(KDIR)/chainload-fit-$(notdir $@)/u-boot.its \
-    $(STAGING_DIR_IMAGE)/an7581_$1-chainload-u-boot.itb
-  cat $(STAGING_DIR_IMAGE)/an7581_$1-chainload-u-boot.itb >> $@
-endef
-
 define Device/FitImageLzma
 	KERNEL_SUFFIX := -uImage.itb
 	KERNEL = kernel-bin | lzma | fit lzma $$(KDIR)/image-$$(DEVICE_DTS).dtb
@@ -59,30 +32,16 @@ define Device/airoha_an7581-evb
 endef
 TARGET_DEVICES += airoha_an7581-evb
 
-define Device/airoha_an7581-evb-emmc-eagle
+define Device/airoha_an7581-evb-emmc
   DEVICE_VENDOR := Airoha
-  DEVICE_MODEL := AN7581 Evaluation Board (eMMC + Eagle)
-  DEVICE_DTS := an7581-evb-emmc-eagle
-  DEVICE_PACKAGES := kmod-i2c-an7581 airoha-en7581-mt7996-npu-firmware \
-		    kmod-mt7996-firmware wpad-basic-mbedtls
+  DEVICE_MODEL := AN7581 Evaluation Board (EMMC)
+  DEVICE_DTS := an7581-evb-emmc
+  DEVICE_PACKAGES := kmod-i2c-an7581
   ARTIFACT/preloader.bin := an7581-preloader rfb
   ARTIFACT/bl31-uboot.fip := an7581-bl31-uboot rfb
   ARTIFACTS := preloader.bin bl31-uboot.fip
 endef
-TARGET_DEVICES += airoha_an7581-evb-emmc-eagle
-
-define Device/airoha_an7581-evb-emmc-kite
-  DEVICE_VENDOR := Airoha
-  DEVICE_MODEL := AN7581 Evaluation Board (eMMC + Kite)
-  DEVICE_DTS := an7581-evb-emmc-kite
-  DEVICE_PACKAGES := kmod-i2c-an7581 airoha-en7581-npu-firmware \
-		    kmod-mt7992-firmware wpad-basic-mbedtls
-  ARTIFACT/preloader.bin := an7581-preloader rfb
-  ARTIFACT/bl31-uboot.fip := an7581-bl31-uboot rfb
-  ARTIFACTS := preloader.bin bl31-uboot.fip
-endef
-TARGET_DEVICES += airoha_an7581-evb-emmc-kite
-
+TARGET_DEVICES += airoha_an7581-evb-emmc
 
 define Device/bell_xg-040g-md
   $(call Device/FitImageLzma)

@@ -93,10 +93,6 @@ UPDATE_PACKAGE "picoclaw" "GennKann/luci-app-picoclaw" "master"
 pkgs=("luci-app-airoha-npu"); UPDATE_PACKAGE pkgs "oyk470p/luci-app-airoha-npu" "main"; unset pkgs
 sed -i 's|include ../../luci.mk|include $(TOPDIR)/feeds/luci/luci.mk|' ./luci-app-airoha-npu/Makefile
 
-# vsftpd ui
-# pkgs=("luci-app-vsftpd"); UPDATE_PACKAGE pkgs "ericyin/luci" "openwrt-25.12" "pkg"; unset pkgs
-# sed -i 's|include ../../luci.mk|include $(TOPDIR)/feeds/luci/luci.mk|' ./luci-app-vsftpd/Makefile
-
 # 修改 LuCI 默认主题为 Aurora（保留 bootstrap 包可共存）
 echo " "
 echo "=========================================="

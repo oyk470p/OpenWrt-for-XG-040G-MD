@@ -1,4 +1,4 @@
-name: Build_XG_040G_MD_OpenWrt_Custom
+name: Build_XG_040G_MD_OpenWrt_25.12
 
 permissions:
   contents: write
